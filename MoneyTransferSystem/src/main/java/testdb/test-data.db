@@ -1,0 +1,2 @@
+INSERT INTO account(balance, id) VALUES ('5500', '1');
+INSERT INTO account(balance, id) VALUES ('5500', '2');
