@@ -17,9 +17,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import fr.adservio.banque.beans.Confirmation;
+import fr.adservio.banque.beans.MonetaryAmount;
 import fr.adservio.banque.configuration.ApplicationConfig;
-import fr.adservio.banque.entities.Confirmation;
-import fr.adservio.banque.entities.MonetaryAmount;
 import fr.adservio.banque.services.TransferService;
 import junit.framework.Assert;
 

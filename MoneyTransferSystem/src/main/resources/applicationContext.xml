@@ -16,6 +16,7 @@
 		<!-- mainly used for optional properties -->
 		<property name="logService" ref="logServiceRef" /> <!-- bean reference -->
 		<property name="mailServer" value="najd.labben@gmail.com" />
+		<property name="defaultLocale" value="#{ systemProperties['user.language'] }"/>
 
 		<!-- constructor dependency injection -->
 		<!-- mainly used for mandatory properties -->

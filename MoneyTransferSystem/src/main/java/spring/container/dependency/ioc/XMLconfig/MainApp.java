@@ -12,7 +12,7 @@ public class MainApp {
 		
 		MailService mailService = context.getBean(MailService.class);
 		
-		System.out.println(mailService.getMailServer());
+		System.out.println(mailService.getDefaultLocale());
 		//get reference of bean
 		LogService logServiceRef = mailService.getLogService();
 		System.out.println("Log service reference "+logServiceRef);

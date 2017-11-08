@@ -6,6 +6,7 @@ public class MailService {
 	private LogService logService;
 	private DataBaseService dataBaseService;
 	private String mailServer;
+	private String defaultLocale;
 	
 	//constructor injection
 	public MailService(DataBaseService dataBaseService) {
@@ -31,6 +32,14 @@ public class MailService {
 
 	public void setMailServer(String mailServer) {
 		this.mailServer = mailServer;
+	}
+
+	public String getDefaultLocale() {
+		return defaultLocale;
+	}
+
+	public void setDefaultLocale(String defaultLocale) {
+		this.defaultLocale = defaultLocale;
 	}
 
 }

@@ -1,4 +1,4 @@
-package fr.adservio.banque.entities;
+package fr.adservio.banque.beans;
 
 public class MonetaryAmount {
 	
