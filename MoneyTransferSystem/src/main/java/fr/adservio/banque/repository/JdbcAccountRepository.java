@@ -37,25 +37,22 @@ public class JdbcAccountRepository implements AccountRepository {
 	public void populateCache() throws SQLException {
 		if (conn == null) {
 			conn = basicDataSource.getConnection();
-			System.out.println(conn);
 		}
 
 	}
 
-	@PreDestroy
+//	@PreDestroy
 	@Override
 	public void clearCache() {
 		ConfigurableApplicationContext context = (ConfigurableApplicationContext) SpringApplication
 				.run(JpaAccountRepository.class);
 		context.close();
-		System.out.println("kill beans");
 	}
 
 	@Override
 	public Account loadAccount(String idAccount) throws SQLException {
 		PreparedStatement stmt = null;
 		Account clientAccount = null;
-		// getConnection();
 		String req = "SELECT * FROM account WHERE id = ?";
 		stmt = conn.prepareStatement(req);
 		stmt.setString(1, idAccount);
@@ -70,7 +67,6 @@ public class JdbcAccountRepository implements AccountRepository {
 	@Override
 	public void updateAccount(Account a) throws SQLException {
 		PreparedStatement stmt = null;
-		// getConnection();
 		String req = "UPDATE account SET balance = ? WHERE id = ?";
 		stmt = conn.prepareStatement(req);
 		stmt.setString(1, a.getBalance().replaceAll("\\s", ""));
