@@ -41,14 +41,6 @@ public class JdbcAccountRepository implements AccountRepository {
 
 	}
 
-//	@PreDestroy
-	@Override
-	public void clearCache() {
-		ConfigurableApplicationContext context = (ConfigurableApplicationContext) SpringApplication
-				.run(JpaAccountRepository.class);
-		context.close();
-	}
-
 	@Override
 	public Account loadAccount(String idAccount) throws SQLException {
 		PreparedStatement stmt = null;

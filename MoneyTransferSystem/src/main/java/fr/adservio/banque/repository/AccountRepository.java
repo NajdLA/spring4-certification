@@ -13,8 +13,6 @@ public interface AccountRepository {
 
 	public Account VerifBalanceSender(String idAccount, MonetaryAmount monetaryAmount, TaxCalculator taxCalCulator,
 			Double maxTransfersPerDay) throws SQLException;
-
-	public void clearCache();
 	
 	public void populateCache() throws SQLException;
 }

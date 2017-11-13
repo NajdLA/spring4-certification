@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-							http://www.springframework.org/schema/beans/spring-beans.xsd
-							http://www.springframework.org/schema/context 
-							http://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd ">
 
 	<!-- Configuration for the application. Beans here define the heart of the 
 		application logic. -->
@@ -16,7 +13,17 @@
 		<!-- mainly used for optional properties -->
 		<property name="logService" ref="logServiceRef" /> <!-- bean reference -->
 		<property name="mailServer" value="najd.labben@gmail.com" />
-		<property name="defaultLocale" value="#{ systemProperties['user.language'] }"/>
+		<property name="defaultLocale" value="#{ systemProperties['user.language'] }" />
+		<!-- <property/> or <constructor-arg/> elements defines inner bean -->
+		<!-- no ID is required for inner beans hence it is always anonymous and 
+			belongs to parent bean -->
+		<!-- It is not possible to inject or autowire inner beans in other beans -->
+		<property name="mailServiceConfig">
+			<bean class="spring.container.dependency.ioc.XMLconfig.MailServiceConfig">
+				<property name="active" value="true"></property>
+				<property name="maxHourlyEmailLimit" value="12"></property>
+			</bean>
+		</property>
 
 		<!-- constructor dependency injection -->
 		<!-- mainly used for mandatory properties -->
@@ -25,4 +32,28 @@
 	<bean id="logServiceRef" class="spring.container.dependency.ioc.XMLconfig.LogService" />
 	<bean id="dataBaseService"
 		class="spring.container.dependency.ioc.XMLconfig.DataBaseService" />
+	<!-- bean inheritance example -->
+	<!-- using proprety placeholder -->
+	<bean id="person" class="spring.container.dependency.ioc.XMLconfig.Person">
+		<property name="username" value="${person.username}"></property>
+		<property name="password" value="${person.pwd}"></property>
+		<property name="active" value="true"></property>
+	</bean>
+	<!-- using spel(spring expression language) -->
+	<bean id="customer" class="spring.container.dependency.ioc.XMLconfig.Customer"
+		parent="person">
+		<property name="taxe" value="#{util['FR']}"></property>
+		<property name="address" value="Saxe gamebetta"></property>
+	</bean>
+	<bean id="company" abstract="true">
+		<property name="companyName" value="${company.name}"></property>
+		<property name="companylocation" value="${company.location}"></property>
+	</bean>
+	<bean id="developper" class="spring.container.dependency.ioc.XMLconfig.Developper" parent="company">
+		<property name="skills" value="JAVA/J2EE"></property>
+	</bean>
+	<context:property-placeholder location="classpath:application.properties" />
+	<util:properties id="util"
+		location="classpath:taxeByCountry.properties"></util:properties>
+
 </beans>

@@ -8,6 +8,8 @@ public class MailService {
 	private String mailServer;
 	private String defaultLocale;
 	
+	private MailServiceConfig mailServiceConfig;
+	
 	//constructor injection
 	public MailService(DataBaseService dataBaseService) {
 		this.dataBaseService = dataBaseService;
@@ -40,6 +42,14 @@ public class MailService {
 
 	public void setDefaultLocale(String defaultLocale) {
 		this.defaultLocale = defaultLocale;
+	}
+
+	public MailServiceConfig getMailServiceConfig() {
+		return mailServiceConfig;
+	}
+
+	public void setMailServiceConfig(MailServiceConfig mailServiceConfig) {
+		this.mailServiceConfig = mailServiceConfig;
 	}
 
 }

@@ -44,12 +44,6 @@ public class JpaAccountRepository implements AccountRepository {
 	}
 
 	@Override
-	public void clearCache() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void populateCache() throws SQLException {
 		// TODO Auto-generated method stub
 		
