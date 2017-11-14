@@ -3,7 +3,7 @@ package spring.container.dependency.ioc.JavaConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import spring.container.dependency.ioc.XMLconfig.MailService;
+import spring.container.dependency.ioc.services.MailService;
 
 
 @ComponentScan("spring.container.dependency.ioc")

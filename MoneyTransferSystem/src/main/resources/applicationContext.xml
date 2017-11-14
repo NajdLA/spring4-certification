@@ -20,7 +20,6 @@
 		<!-- It is not possible to inject or autowire inner beans in other beans -->
 		<property name="mailServiceConfig">
 			<bean class="spring.container.dependency.ioc.XMLconfig.MailServiceConfig">
-				<property name="active" value="true"></property>
 				<property name="maxHourlyEmailLimit" value="12"></property>
 			</bean>
 		</property>
