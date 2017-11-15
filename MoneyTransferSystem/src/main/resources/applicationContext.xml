@@ -7,7 +7,7 @@
 		application logic. -->
 
 	<!-- combining setter and constructor injection -->
-	<bean id="mailService" class="spring.container.dependency.ioc.services.MailService">
+	<bean id="mailService" class="spring.container.dependency.ioc.services.MailService" init-method="startMethod" destroy-method="endMethod">
 
 		<!-- Setter dependency injection -->
 		<!-- mainly used for optional properties -->

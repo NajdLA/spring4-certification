@@ -1,5 +1,8 @@
 package spring.container.dependency.ioc.services;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import spring.container.dependency.ioc.configuration.MailServiceConfig;
 
 public class MailService {
@@ -20,6 +23,16 @@ public class MailService {
 	//setter injection
 	public void setLogService(LogService logService) {
 		this.logService = logService;
+	}
+	
+	public void startMethod() {
+		System.out.println("call post construct method "+MailService.class.getSimpleName());
+
+	}
+
+	public void endMethod() {
+		System.out.println("call pre destroy method"+MailService.class.getSimpleName());
+
 	}
 	
 	public MailService() {

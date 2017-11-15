@@ -9,44 +9,63 @@ import org.springframework.context.annotation.Configuration;
 import spring.container.dependency.ioc.services.DataBaseService;
 import spring.container.dependency.ioc.services.LogService;
 import spring.container.dependency.ioc.services.MailService;
-@Configuration //let the spring framework knows this class is used as configuration
+
+@Configuration // let the spring framework knows this class is used as
+				// configuration
 public class JavaConfig {
-	
-	//<bean id="logServiceRef" class="spring.container.dependency.ioc.XMLconfig.LogService" />
+
+	// <bean id="logServiceRef"
+	// class="spring.container.dependency.ioc.XMLconfig.LogService" />
 	@Bean
-	public LogService logServiceRef(){
+	public LogService logServiceRef() {
 		LogService logService = new LogService();
-		return logService;	
+		return logService;
 	}
+
 	/*
-	<bean id="mailService" class="spring.container.dependency.ioc.XMLconfig.MailService">
-	<!-- Setter dependency injection -->
-	<!-- mainly used for optional properties -->
-	<property name="logService" ref="logServiceRef" /> <!-- bean reference -->
-	</bean>
-	*/
+	 * <bean id="mailService"
+	 * class="spring.container.dependency.ioc.XMLconfig.MailService"> <!--
+	 * Setter dependency injection --> <!-- mainly used for optional properties
+	 * --> <property name="logService" ref="logServiceRef" /> <!-- bean
+	 * reference --> </bean>
+	 */
 	@Bean
-	public MailService mailService(){
+	public MailService mailService() {
 		MailService mailService = new MailService();
 		mailService.setLogService(logServiceRef());
 		return mailService;
 	}
+
 	/*
-	<bean id="mailServiceCons" class="spring.container.dependency.ioc.XMLconfig.MailService">
-	<!-- constructor dependency injection -->
-	<!-- mainly used for mandatory properties -->
-	<constructor-arg ref="dataBaseService" /> <!-- bean reference -->
-	</bean>
-	*/
+	 * <bean id="mailServiceCons"
+	 * class="spring.container.dependency.ioc.XMLconfig.MailService"> <!--
+	 * constructor dependency injection --> <!-- mainly used for mandatory
+	 * properties --> <constructor-arg ref="dataBaseService" /> <!-- bean
+	 * reference --> </bean>
+	 */
 	@Bean
-	public MailService mailServiceCons(){
+	public MailService mailServiceCons() {
 		MailService mailService = new MailService(dataBaseService());
 		return mailService;
 	}
-	//<bean id="dataBaseService" class="spring.container.dependency.ioc.XMLconfig.DataBaseService" />
+
+	// <bean id="dataBaseService"
+	// class="spring.container.dependency.ioc.XMLconfig.DataBaseService" />
 	@Bean
-	public DataBaseService dataBaseService(){
+	public DataBaseService dataBaseService() {
 		DataBaseService dataBaseService = new DataBaseService();
 		return dataBaseService;
+	}
+
+	@PostConstruct
+	public void startMethod() {
+		System.out.println("call post construct method"+JavaConfig.class.getName());
+
+	}
+
+	@PreDestroy
+	public void endMethod() {
+		System.out.println("call pre destroy method"+JavaConfig.class.getName());
+
 	}
 }
