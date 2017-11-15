@@ -3,6 +3,8 @@ package spring.container.dependency.ioc.JavaConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+
+import spring.container.dependency.ioc.configuration.JavaConfig;
 import spring.container.dependency.ioc.services.MailService;
 
 
@@ -11,7 +13,7 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		// creating the application context
-		ApplicationContext context = SpringApplication.run(MainApp.class, args);
+		ApplicationContext context = SpringApplication.run(JavaConfig.class, args);
 		
 		//look up the application service interface
 		//use typed method to avoid cast

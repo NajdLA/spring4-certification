@@ -1,5 +1,8 @@
 package spring.container.dependency.ioc.configuration;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 public class MailServiceConfig {
 
 	private String maxHourlyEmailLimit;
@@ -11,4 +14,6 @@ public class MailServiceConfig {
 	public void setMaxHourlyEmailLimit(String maxHourlyEmailLimit) {
 		this.maxHourlyEmailLimit = maxHourlyEmailLimit;
 	}
+	
+
 }

@@ -7,7 +7,7 @@
 		application logic. -->
 
 	<!-- combining setter and constructor injection -->
-	<bean id="mailService" class="spring.container.dependency.ioc.XMLconfig.MailService">
+	<bean id="mailService" class="spring.container.dependency.ioc.services.MailService">
 
 		<!-- Setter dependency injection -->
 		<!-- mainly used for optional properties -->
@@ -19,7 +19,7 @@
 			belongs to parent bean -->
 		<!-- It is not possible to inject or autowire inner beans in other beans -->
 		<property name="mailServiceConfig">
-			<bean class="spring.container.dependency.ioc.XMLconfig.MailServiceConfig">
+			<bean class="spring.container.dependency.ioc.configuration.MailServiceConfig">
 				<property name="maxHourlyEmailLimit" value="12"></property>
 			</bean>
 		</property>
@@ -28,18 +28,18 @@
 		<!-- mainly used for mandatory properties -->
 		<constructor-arg ref="dataBaseService" />
 	</bean>
-	<bean id="logServiceRef" class="spring.container.dependency.ioc.XMLconfig.LogService" />
+	<bean id="logServiceRef" class="spring.container.dependency.ioc.services.LogService" />
 	<bean id="dataBaseService"
-		class="spring.container.dependency.ioc.XMLconfig.DataBaseService" />
+		class="spring.container.dependency.ioc.services.DataBaseService" />
 	<!-- bean inheritance example -->
 	<!-- using proprety placeholder -->
-	<bean id="person" class="spring.container.dependency.ioc.XMLconfig.Person">
+	<bean id="person" class="spring.container.dependency.ioc.beans.Person">
 		<property name="username" value="${person.username}"></property>
 		<property name="password" value="${person.pwd}"></property>
 		<property name="active" value="true"></property>
 	</bean>
 	<!-- using spel(spring expression language) -->
-	<bean id="customer" class="spring.container.dependency.ioc.XMLconfig.Customer"
+	<bean id="customer" class="spring.container.dependency.ioc.beans.Customer"
 		parent="person">
 		<property name="taxe" value="#{util['FR']}"></property>
 		<property name="address" value="Saxe gamebetta"></property>
@@ -48,11 +48,14 @@
 		<property name="companyName" value="${company.name}"></property>
 		<property name="companylocation" value="${company.location}"></property>
 	</bean>
-	<bean id="developper" class="spring.container.dependency.ioc.XMLconfig.Developper" parent="company">
+	<bean id="developper" class="spring.container.dependency.ioc.beans.Developper"
+		parent="company">
 		<property name="skills" value="JAVA/J2EE"></property>
 	</bean>
 	<context:property-placeholder location="classpath:application.properties" />
 	<util:properties id="util"
 		location="classpath:taxeByCountry.properties"></util:properties>
+
+
 
 </beans>

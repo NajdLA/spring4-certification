@@ -49,15 +49,4 @@ public class JavaConfig {
 		DataBaseService dataBaseService = new DataBaseService();
 		return dataBaseService;
 	}
-	@PostConstruct
-	public String startMethode(){
-		
-		return "post construct message";
-	}
-
-	@PreDestroy
-	public String endMethode(){
-		
-		return "show this msg ";
-	}
 }
